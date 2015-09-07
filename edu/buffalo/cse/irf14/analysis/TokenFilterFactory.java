@@ -3,13 +3,21 @@
  */
 package edu.buffalo.cse.irf14.analysis;
 
-
+ 
 /**
  * Factory class for instantiating a given TokenFilter
  * @author nikhillo
  *
  */
 public class TokenFilterFactory {
+	public static TokenFilterFactory instance = new TokenFilterFactory();
+	
+	private TokenFilterFactory(){
+		
+	}
+	
+	
+	
 	/**
 	 * Static method to return an instance of the factory class.
 	 * Usually factory classes are defined as singletons, i.e. 
@@ -23,7 +31,12 @@ public class TokenFilterFactory {
 	 */
 	public static TokenFilterFactory getInstance() {
 		//TODO : YOU MUST IMPLEMENT THIS METHOD
-		return null;
+	if(instance==null)
+	{
+		instance = new TokenFilterFactory();
+	}
+		
+		return instance;
 	}
 	
 	/**
@@ -36,6 +49,51 @@ public class TokenFilterFactory {
 	 */
 	public TokenFilter getFilterByType(TokenFilterType type, TokenStream stream) {
 		//TODO : YOU MUST IMPLEMENT THIS METHOD
+		if(type==TokenFilterType.SYMBOL)
+		{
+			 SymbolRule sr=new SymbolRule(stream);
+			 return sr;
+		}
+		
+		if(type==TokenFilterType.ACCENT)
+		{
+			AccentRule ar=new AccentRule(stream);
+			return ar;
+		}
+		
+		if(type==TokenFilterType.STOPWORD)
+		{
+			StopWords sw=new StopWords(stream);
+			return sw;
+		}
+		
+		if(type==TokenFilterType.STEMMER)
+		{
+			StemmerRule st=new StemmerRule(stream);
+			return st;
+		}
+		if(type==TokenFilterType.SPECIALCHARS)
+		{
+			SpecialCharRule st=new SpecialCharRule(stream);
+			return st;
+		}
+		if(type==TokenFilterType.NUMERIC)
+		{
+			NumberRule st=new NumberRule(stream);
+			return st;
+		}
+		if(type==TokenFilterType.CAPITALIZATION)
+		{
+			CapitalizationRule st=new CapitalizationRule(stream);
+			return st;
+		}
+		if(type==TokenFilterType.DATE)
+		{
+			DateRule sdt=new DateRule(stream);
+			return sdt;
+		}
+		
+		
 		return null;
 	}
 }

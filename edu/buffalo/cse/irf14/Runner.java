@@ -4,6 +4,7 @@
 package edu.buffalo.cse.irf14;
 
 import java.io.File;
+import java.io.IOException;
 
 import edu.buffalo.cse.irf14.document.Document;
 import edu.buffalo.cse.irf14.document.Parser;
@@ -26,12 +27,15 @@ public class Runner {
 
 	/**
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		long startTime = System.nanoTime();
 		String ipDir = args[0];
 		String indexDir = args[1];
 		//more? idk!
-		
+		//String ipDir="/home/abhinav/Downloads/training";
+		//String indexDir="/home/abhinav/Downloads/Indexwriterdir";
 		File ipDirectory = new File(ipDir);
 		String[] catDirectories = ipDirectory.list();
 		
@@ -63,6 +67,8 @@ public class Runner {
 			}
 			
 			writer.close();
+			long endTime = System.nanoTime();
+			System.out.println("Took "+(endTime - startTime) + " ns");
 		} catch (IndexerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

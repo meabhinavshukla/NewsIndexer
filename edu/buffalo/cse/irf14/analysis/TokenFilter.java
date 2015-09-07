@@ -12,6 +12,7 @@ package edu.buffalo.cse.irf14.analysis;
  *
  */
 public abstract class TokenFilter implements Analyzer {
+	public TokenStream stream = new TokenStream();
 	/**
 	 * Default constructor, creates an instance over the given
 	 * TokenStream
@@ -19,5 +20,9 @@ public abstract class TokenFilter implements Analyzer {
 	 */
 	public TokenFilter(TokenStream stream) {
 		//TODO : YOU MUST IMPLEMENT THIS METHOD
+		//TokenFilter tf=new TokenFilter(stream);
+		
+		this.stream = stream;
+		
 	}
 }

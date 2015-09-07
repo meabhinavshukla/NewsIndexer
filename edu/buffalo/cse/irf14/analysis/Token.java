@@ -3,6 +3,8 @@
  */
 package edu.buffalo.cse.irf14.analysis;
 
+import java.util.ArrayList;
+
 /**
  * @author nikhillo
  * This class represents the smallest indexable unit of text.
@@ -13,9 +15,9 @@ package edu.buffalo.cse.irf14.analysis;
  */
 public class Token {
 	//The backing string representation -- can contain extraneous information
-	private String termText;
+	public String termText;
 	//The char array backing termText
-	private char[] termBuffer;
+	public char[] termBuffer;
 	
 	/**
 	 * Method to set the termText to given text.
@@ -23,7 +25,7 @@ public class Token {
 	 * to suit your class definition and data structure needs.
 	 * @param text
 	 */
-	protected void setTermText(String text) {
+	public void setTermText(String text) {
 		termText = text;
 		termBuffer = (termText != null) ? termText.toCharArray() : null;
 	}
@@ -34,7 +36,7 @@ public class Token {
 	 * to suit your class definition and data structure needs.
 	 * @return the underlying termText
 	 */
-	protected String getTermText() {
+	public String getTermText() {
 		return termText;
 	}
 	
@@ -44,7 +46,7 @@ public class Token {
 	 * to suit your class definition and data structure needs.
 	 * @param buffer: The buffer to be set
 	 */
-	protected void setTermBuffer(char[] buffer) {
+	public void setTermBuffer(char[] buffer) {
 		termBuffer = buffer;
 		termText = new String(buffer);
 	}
@@ -53,7 +55,7 @@ public class Token {
 	 * Getter for the field termBuffer
 	 * @return The termBuffer
 	 */
-	protected char[] getTermBuffer() {
+	public char[] getTermBuffer() {
 		return termBuffer;
 	}
 	
@@ -65,8 +67,18 @@ public class Token {
 	 * Also the token order must be maintained.
 	 * @param tokens The token array to be merged
 	 */
-	protected void merge(Token...tokens) {
+	public void merge(Token...tokens) {
 		//TODO : YOU MUST IMPLEMENT THIS METHOD
+	    //ArrayList<Token> tokenlist=new ArrayList<Token>();
+		if(tokens!=null)
+		{
+		for(Token x : tokens)
+		{
+			this.termText=this.termText.concat(" " +x.termText);
+		}
+		}
+	    //int l = tokens.length;
+	    //tokens[++l]= this;
 	}
 	
 	/**
@@ -84,6 +96,7 @@ public class Token {
 	@Override
 	public String toString() {
 		//TODO: YOU MUST IMPLEMENT THIS METHOD
-		return null;
+		String hello = this.termText;
+		return hello;
 	}
 }
